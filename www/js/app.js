@@ -28,11 +28,15 @@ angular.module('starter', ['ionic'])
 			$scope.message = "";
 			$scope.peopleCount--;
 
-			console.log(Math.floor(Math.random() * $scope.teamCount));
-			console.log($scope.allTeams);
-			var select = $scope.allTeams[ Math.floor(Math.random() * $scope.teamCount) ];
-			$scope.teamNames.unshift(select);
-			$scope.allTeamCounts[select] = $scope.allTeamCounts[select] - 1;
+			while(true) {
+				var select = $scope.allTeams[ Math.floor(Math.random() * $scope.teamCount) ];
+				if ($scope.allTeamCounts[select] > 0) {
+					$scope.teamNames.unshift(select);
+					$scope.allTeamCounts[select] = $scope.allTeamCounts[select] - 1;
+					break
+				}
+			}
+
 
 			console.log(select);
 			console.log(JSON.stringify($scope.allTeamCounts));
