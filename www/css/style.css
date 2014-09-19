@@ -1,8 +1,17 @@
 /* Empty. Add your own CSS if you like */
 
+.round-button {
+    border-radius: 50px;
+    width:100px; /*same as the height*/
+    height:100px; /*same as the width*/
+}
+
+.center-button{
+    margin: 0 auto;
+}
+
 input#round{
-    margin-left: auto;
-    margin-right: auto;
+    text-align: center;
     width:100px; /*same as the height*/
     height:100px; /*same as the width*/
     background-color:#ff0000;
