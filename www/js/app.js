@@ -31,9 +31,9 @@ angular.module('starter', ['ionic'])
 			while(true) {
 				var select = $scope.allTeams[ Math.floor(Math.random() * $scope.teamCount) ];
 				if ($scope.allTeamCounts[select] > 0) {
-					$scope.teamNames.unshift(select);
+					$scope.teamNames.unshift(select + "  -  Player" + ($scope.peopleCount+1) );
 					$scope.allTeamCounts[select] = $scope.allTeamCounts[select] - 1;
-					break
+					break;
 				}
 			}
 
@@ -43,7 +43,7 @@ angular.module('starter', ['ionic'])
 		};
 
 		$scope.reset = function(people, team) {
-			if(isNaN(people) || isNaN(team)) {
+			if(isNaN(people) || isNaN(team) || team > people) {
 				$scope.message = "you dumb";
 				return;
 			}
