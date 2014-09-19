@@ -20,31 +20,53 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
+
   </head>
-  <body ng-app="starter">
+  <body ng-app="starter" ng-controller="MainController">
 			<ion-pane>
 				<ion-header-bar class="bar-stable bar-dark">
-					<h1 class="title">Ionic Blank Starter</h1>
+					<h1 class="title">YOLO</h1>
 				</ion-header-bar>
 				<ion-content>
 					<!-- input list -->
 					<div class="list">
 						<label class="item item-input item-stacked-label">
 							<span class="input-label">Number of People</span>
-							<input type="text" placeholder="50">
+							<input ng-model="people" type="number">
 						</label>
 						<label class="item item-input item-stacked-label">
 							<span class="input-label">Number of Teams</span>
-							<input type="text" placeholder="2">
+							<input ng-model="teamCount" type="number">
 						</label>
 					</div>
+					<div>
+
+						<div class="card">
+							<div class="item item-text-wrap">
+								<button ng-click="reset(people, teamCount)" class="set-button button">Set</button>
+								Remaining Players: {{peopleCount}}
+							</div>
+						</div>
+					</div>
+
 
 					<!--big red button-->
 					<div>
-						<button class="round-button center-button button button-assertive">button
+						<button class="round-button center-button button button-assertive"
+										ng-click="submit()">
+							PUSH ME
 						</button>
 					</div>
+					{{message}}
 
+
+					<div>
+						<ion-list>
+							<ion-item ng-repeat="team in teamNames track by $index">
+								{{team}}
+							</ion-item>
+						</ion-list>
+					</div>
 
 				</ion-content>
 			</ion-pane>

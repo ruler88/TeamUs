@@ -17,3 +17,50 @@ angular.module('starter', ['ionic'])
     }
   });
 })
+
+.controller('MainController', ['$scope', function($scope) {
+		$scope.submit = function() {
+
+			if($scope.peopleCount <= 0) {
+				$scope.message = "YOU DUMB";
+				return;
+			}
+			$scope.message = "";
+			$scope.peopleCount--;
+
+			console.log(Math.floor(Math.random() * $scope.teamCount));
+			console.log($scope.allTeams);
+			var select = $scope.allTeams[ Math.floor(Math.random() * $scope.teamCount) ];
+			$scope.teamNames.unshift(select);
+			$scope.allTeamCounts[select] = $scope.allTeamCounts[select] - 1;
+
+			console.log(select);
+			console.log(JSON.stringify($scope.allTeamCounts));
+		};
+
+		$scope.reset = function(people, team) {
+			if(isNaN(people) || isNaN(team)) {
+				$scope.message = "you dumb";
+				return;
+			}
+			$scope.message = "";
+			$scope.peopleCount = people;
+			$scope.teamCount = team;
+			$scope.teamNames = [];
+			$scope.allTeams = [];
+			$scope.allTeamCounts = {};
+
+			for( var i = 0; i < $scope.teamCount; i++ ){
+				$scope.allTeams.push("Team: " + String.fromCharCode(65+i));
+
+				var count = Math.floor(people / team);
+				var addition = ((people/team) - Math.floor(people/team)) * team - i;
+				addition = addition >= 0 ? addition : 0;		//js number system is not precise
+				addition = addition >=1 ? 1 : addition;
+				count += addition >= 0 ? addition : 0;
+				$scope.allTeamCounts["Team: " + String.fromCharCode(65+i)] = Math.round(count);
+			}
+		};
+
+
+}]);
